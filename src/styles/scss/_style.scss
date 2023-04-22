@@ -4,7 +4,6 @@ body {
   font-family: 'Montserrat', sans-serif;
   background-color: $black;
   color: $text;
-
 }
 
 .image {
@@ -14,4 +13,5 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-image: url('./../../img/code_1.jpeg');
+  user-select: none;
 }
