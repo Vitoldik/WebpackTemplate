@@ -23,7 +23,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         clean: true,
-        filename: "js/[name].[contenthash].js"
+        filename: "js/[name].[contenthash].js",
+        assetModuleFilename: "assets/[name].[ext]"
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -60,6 +61,13 @@ module.exports = {
                 type: "asset/resource",
                 generator: {
                     filename: 'fonts/[name].[ext]'
+                }
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[name].[ext]'
                 }
             },
             {
