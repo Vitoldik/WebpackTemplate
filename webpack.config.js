@@ -16,7 +16,10 @@ module.exports = {
         open: true,
         hot: true
     },
-    entry: path.resolve(__dirname, 'src/js/main.js'),
+    entry: [
+        "core-js/stable",
+        path.resolve(__dirname, 'src/js/main.js')
+    ],
     output: {
         path: path.resolve(__dirname, 'dist'),
         clean: true,
@@ -51,7 +54,28 @@ module.exports = {
                     },
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(?:js|mjs|cjs)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            ['@babel/preset-env', { targets: "defaults" }]
+                        ]
+                    }
+                }
             }
         ]
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    },
+    performance: {
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
     }
 }
